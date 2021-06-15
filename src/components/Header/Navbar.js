@@ -7,7 +7,7 @@ import PersonIcon from '@material-ui/icons/Person';
 const Navbar = () => {
   const [open, isOpen] = useState(false);
   return (
-    <header id='page__header' className='mx-3'>
+    <header id='page__header' className='max-w-7xl mx-auto'>
       <div
         id='container'
         className='w-full flex items-center justify-between px-3 py-3'
@@ -22,7 +22,7 @@ const Navbar = () => {
         />
         <div
           id='desktop__nav'
-          className='sm:hidden lg:flex justify-between mr-8 flex-row w-3/6'
+          className='hidden lg:flex justify-between mr-8 flex-row w-3/6'
         >
           <nav id=''>
             <ul
