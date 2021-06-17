@@ -3,6 +3,9 @@ import Navbar from './components/Header/Navbar';
 import Hero from './components/Hero Section/Hero';
 import Featured from './components/Featured/Featured';
 import Moto from './components/Moto/Moto';
+import NewsLetter from './components/Newsletter/NewsLetter';
+import Footer from './components/Footer/Footer';
+
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +26,8 @@ function App() {
       <Hero />
       <Featured />
       <Moto />
+      <NewsLetter />
+      <Footer />
     </div>
   );
 }
