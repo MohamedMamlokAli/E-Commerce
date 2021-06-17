@@ -6,6 +6,7 @@ function App() {
     <div className='app'>
       <Navbar />
       <Hero />
+      <h1 className>this is featured products</h1>
     </div>
   );
 }

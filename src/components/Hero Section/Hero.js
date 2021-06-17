@@ -5,13 +5,16 @@ import img2 from '../images/hero-sm.jpg';
 
 const Hero = () => {
   return (
-    <section id='hero' className='pl-5 mt-20'>
+    <section id='hero' className='pl-5 mt-20 h-screen'>
       <div
         id='hero__container'
-        className='flex flex-row justify-between max-w-6xl mx-auto'
+        className='flex  flex-row justify-between  max-w-6xl mx-auto h-4/6'
       >
-        <div id='hero__left__side' className='space-y-8 max-w-2xl '>
-          <h1 className='text-3xl lg:text-6xl font-bold tracking-wide'>
+        <div
+          id='hero__left__side'
+          className='max-w-2xl flex flex-col justify-center flex-1 '
+        >
+          <h1 className='text-3xl lg:text-6xl font-bold tracking-wide text-gray-800'>
             Design your<br></br>
             <span className='mt-2 block'>comfort zone</span>
           </h1>
@@ -23,16 +26,19 @@ const Hero = () => {
           </p>
           <Button name='SHOP NOW' />
         </div>
-        <div id='hero__right__side' className='w-4/6 relative hidden lg:block'>
+        <div
+          id='hero__right__side'
+          className='relative hidden lg:flex flex-1 justify-end'
+        >
           <img
-            className='w-full h-full object-contain inline-block absolute right-20'
+            className='  object-contain absolute right-0 h-full'
             src={img1}
             alt=''
           />
           <img
-            className='inline-block absolute bottom-0 w-32  left-0'
             src={img2}
             alt=''
+            className='w-32 h-24 absolute bottom-0 left-0 object-cover'
           />
         </div>
       </div>
