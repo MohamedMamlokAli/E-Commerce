@@ -1,2 +1,4 @@
-const state = [];
-const cartReducer = (state, action) => {};
+const cartReducer = (state = [], action) => {
+  return state;
+};
+export default cartReducer;
