@@ -1,13 +1,13 @@
 import './App.css';
+import Home from './components/HomePage/Home';
 import Navbar from './components/Header/Navbar';
-import Hero from './components/Hero Section/Hero';
-import Featured from './components/Featured/Featured';
-import Moto from './components/Moto/Moto';
-import NewsLetter from './components/Newsletter/NewsLetter';
 import Footer from './components/Footer/Footer';
+import About from './components/About/About';
+import Products from './components/Products/Products';
 
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const url = 'https://course-api.com/react-store-products';
@@ -23,10 +23,13 @@ function App() {
   return (
     <div className='app'>
       <Navbar />
-      <Hero />
-      <Featured />
-      <Moto />
-      <NewsLetter />
+      <Router>
+        <Switch>
+          <Route path='/' exact component={Home}></Route>
+          <Route path='/about' component={About}></Route>
+          <Route path='/products' component={Products}></Route>
+        </Switch>
+      </Router>
       <Footer />
     </div>
   );
