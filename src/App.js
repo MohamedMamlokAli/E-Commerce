@@ -22,15 +22,13 @@ function App() {
   }, []);
   return (
     <div className='app'>
-      <Navbar />
       <Router>
-        <Switch>
-          <Route path='/' exact component={Home}></Route>
-          <Route path='/about' component={About}></Route>
-          <Route path='/products' component={Products}></Route>
-        </Switch>
+        <Navbar />
+        <Route path='/' exact component={Home} />
+        <Route path='/about' component={About} />
+        <Route path='/products' component={Products} />
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }
