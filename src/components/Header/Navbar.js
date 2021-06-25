@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import openMenu from '../images/icon-hamburger.svg';
 import closeMenu from '../images/icon-close.svg';
 import logo from '../images/logo.221f6b13.svg';
@@ -29,9 +30,13 @@ const Navbar = () => {
               id='nav__links__container'
               className=' flex items-center w-2/3 space-x-6 justify-between text-gray-500'
             >
-              <li id='nav__link'>Home</li>
+              <li id='nav__link'>
+                <Link to='/'>Home</Link>
+              </li>
               <li id='nav__link'>About</li>
-              <li id='nav__link'>Products</li>
+              <li id='nav__link'>
+                <Link to='/products'>Products</Link>
+              </li>
             </ul>
           </nav>
           <div

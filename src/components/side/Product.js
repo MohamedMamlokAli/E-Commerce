@@ -4,11 +4,10 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: '20%',
+    minWidth: '300px',
     flexGrow: '1',
     boxShadow: 'none',
   },
@@ -22,6 +21,18 @@ const useStyles = makeStyles({
 
 export default function Product({ name, img, price }) {
   const classes = useStyles();
+  let priceArray = [];
+  let stringPrice = price.toString();
+  for (let i = 0; i < stringPrice.length; i++) {
+    priceArray.push(parseInt(stringPrice[i]));
+  }
+  let formattedPrice = `${priceArray
+    .slice(0, priceArray.length - 2)
+    .join('')}.${priceArray
+    .slice(priceArray.length - 2, priceArray.length)
+    .join('')}`;
+  console.log(formattedPrice);
+
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -31,17 +42,14 @@ export default function Product({ name, img, price }) {
       <CardActionArea>
         <CardMedia className={classes.media} image={img} title={name} />
         <CardContent className='flex justify-between text-sm bg-gray-50'>
-          <Typography
-            className='text-gray-700'
-            gutterBottom
-            variant='h6'
-            component='h2'
-          >
-            {name}
-          </Typography>
-          <Typography gutterBottom variant='h6' component='h2'>
-            {formatter.format(price)}
-          </Typography>
+          <p className='text-gray-700'>{name}</p>
+          <p>
+            {new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 2,
+            }).format(formattedPrice)}
+          </p>
         </CardContent>
       </CardActionArea>
     </Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import MotoCard from '../side/MotoCard';
+import MotoCard from '../../side/MotoCard';
 import ExploreIcon from '@material-ui/icons/Explore';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import MenuBookIcon from '@material-ui/icons/MenuBook';

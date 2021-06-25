@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '../side/Button';
-import Product from '../side/Product';
+import Button from '../../side/Button';
+import Product from '../../side/Product';
 
 const Featured = () => {
   const products = useSelector((state) => state.products);
-  products.length = 3;
+  const [current, setCurrent] = useState([...products]);
+  current.length = 3;
+  useEffect(() => {
+    if (products) {
+      setCurrent([...products]);
+    }
+  }, [products]);
+
   return (
     <section
       id='featured'
@@ -18,8 +25,8 @@ const Featured = () => {
         id='products'
         className='flex  lg:flex-row lg:justify-center justify-between flex-wrap  gap-10 items-center'
       >
-        {products ? (
-          products.map((product) => {
+        {current ? (
+          current.map((product) => {
             return (
               <Product
                 name={product.name}

@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../side/Button';
-import img1 from '../images/hero-lg.jpg';
-import img2 from '../images/hero-sm.jpg';
+import Button from '../../side/Button';
+import img1 from '../../images/hero-lg.jpg';
+import img2 from '../../images/hero-sm.jpg';
 
 const Hero = () => {
   return (
