@@ -9,12 +9,12 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import SingleProduct from './components/SingleProduct/SingleProduct';
 
 const url = 'https://course-api.com/react-store-products';
 function App() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  console.log(products);
   useEffect(() => {
     axios
       .get(url)
@@ -24,9 +24,11 @@ function App() {
     <div className='app'>
       <Router>
         <Navbar />
+
         <Route path='/' exact component={Home} />
         <Route path='/about' component={About} />
-        <Route path='/products' component={Products} />
+        <Route path='/products' exact component={Products} />
+        <Route path='/products/:id' component={SingleProduct} />
         <Footer />
       </Router>
     </div>

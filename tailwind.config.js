@@ -6,6 +6,10 @@ module.exports = {
       height: {
         '55vh': '55vh',
       },
+      colors: {
+        store: '#eaded7',
+        price: '#ab7a5f',
+      },
     },
   },
   variants: {

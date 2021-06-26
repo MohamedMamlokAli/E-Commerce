@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Button from '../../side/Button';
 import Product from '../../side/Product';
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
   const products = useSelector((state) => state.products);
@@ -23,16 +24,19 @@ const Featured = () => {
       </h1>
       <div
         id='products'
-        className='flex  lg:flex-row lg:justify-center justify-between flex-wrap  gap-10 items-center'
+        //flex  lg:flex-row lg:justify-center justify-between flex-wrap  gap-10 items-center w-5/6
+        className='grid grid-cols-1 gap-y-4 lg:grid-cols-3 lg:gap-x-4 w-full px-32'
       >
         {current ? (
           current.map((product) => {
             return (
-              <Product
-                name={product.name}
-                price={product.price}
-                img={product.image}
-              />
+              <Link to={`/products/${product.id}}`} exact>
+                <Product
+                  name={product.name}
+                  price={product.price}
+                  img={product.image}
+                />
+              </Link>
             );
           })
         ) : (
