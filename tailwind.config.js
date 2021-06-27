@@ -10,6 +10,9 @@ module.exports = {
         store: '#eaded7',
         price: '#ab7a5f',
       },
+      height: {
+        '1/2-screen': '50vh',
+      },
     },
   },
   variants: {

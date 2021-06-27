@@ -20,6 +20,7 @@ const SingleProduct = ({ match }) => {
   const [data, setData] = useState({ images: [{ url: '' }] });
   const [loading, isLoading] = useState(true);
   const [price, setPrice] = useState(0);
+  const [amount, setAmount] = useState(1);
   const productID = match.params.id;
   const single_product_url = `https://course-api.com/react-store-single-product?id=${productID}`;
   useEffect(() => {
@@ -35,7 +36,13 @@ const SingleProduct = ({ match }) => {
   }, [productID]);
   console.log(data);
   const classes = useStyles();
-
+  const decrease = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    } else {
+      setAmount(1);
+    }
+  };
   return (
     <div>
       {loading ? (
@@ -60,65 +67,70 @@ const SingleProduct = ({ match }) => {
               / {data.name}
             </h3>
           </div>
-          <div className='w-5/6 mx-auto'>
+          <div className='w-5/6 mx-auto '>
             <Link to='/products'>
               <Button name='BACK TO PRODUCTS' />
             </Link>
-            <div id='product__image' className='h-80 w-full my-5 rounded-lg'>
-              <img
-                className='h-full w-full object-cover rounded-lg'
-                src={data.images[0].url}
-                alt=''
-              />
-            </div>
-            <div id='product__info' className='py-5'>
-              <h2 className='text-3xl text-gray-700 font-bold capitalize tracking-widest'>
-                {data.name}
-              </h2>
-              <div className='flex text-sm items-center my-4'>
-                <div className={classes.root}>
-                  <Rating
-                    name='half-rating-read'
-                    precision={0.5}
-                    value={data.stars}
-                    readOnly
-                  />
-                </div>
-                <p>({data.reviews} customers reviews)</p>
+            <div className='lg:grid lg:grid-cols-2 lg:gap-x-7 '>
+              <div
+                id='product__image'
+                className='h-1/2-screen w-full my-5 rounded-lg'
+              >
+                <img
+                  className='h-full w-full object-cover rounded-lg'
+                  src={data.images[0].url}
+                  alt=''
+                />
               </div>
-              <p className='text-price font-bold tracking-widest text-sm'>
-                {price}
-              </p>
-              <p className='text-gray-500 text-sm leading-7'>
-                {data.description}
-              </p>
-              <div id='secondary__info'>
-                <p className='font-bold'>
-                  Available:{' '}
-                  <span className='text-sm font-normal ml-8 text-gray-500'>
-                    {data.stock ? 'In Stock' : 'Out of Stock'}
-                  </span>
-                </p>
-                <p className='font-bold'>
-                  SKU:{' '}
-                  <span className='text-sm font-normal ml-8 text-gray-500'>
-                    {data.id}
-                  </span>
-                </p>
-                <p className='font-bold'>
-                  Brand:{' '}
-                  <span className='text-sm font-normal ml-8 text-gray-500'>
-                    {data.company}
-                  </span>
-                </p>
-              </div>
-              <div id='add__to__cart' className='my-5 text-2xl font-bold'>
-                <div className='flex'>
-                  <button>-</button>
-                  <p className='mx-5'>1</p>
-                  <button>+</button>
+              <div id='product__info' className='py-5'>
+                <h2 className='text-3xl text-gray-700 font-bold capitalize tracking-widest'>
+                  {data.name}
+                </h2>
+                <div className='flex text-sm items-center my-4'>
+                  <div className={classes.root}>
+                    <Rating
+                      name='half-rating-read'
+                      precision={0.5}
+                      value={data.stars}
+                      readOnly
+                    />
+                  </div>
+                  <p>({data.reviews} customers reviews)</p>
                 </div>
-                <Button name='ADD TO CART' />
+                <p className='text-price font-bold tracking-widest text-sm'>
+                  {price}
+                </p>
+                <p className='text-gray-500 text-sm leading-7'>
+                  {data.description}
+                </p>
+                <div id='secondary__info' className='space-y-5 mt-5'>
+                  <p className='font-bold'>
+                    Available:{' '}
+                    <span className='text-sm font-normal ml-8 text-gray-500'>
+                      {data.stock ? 'In Stock' : 'Out of Stock'}
+                    </span>
+                  </p>
+                  <p className='font-bold'>
+                    SKU:{' '}
+                    <span className='text-sm font-normal ml-8 text-gray-500'>
+                      {data.id}
+                    </span>
+                  </p>
+                  <p className='font-bold'>
+                    Brand:{' '}
+                    <span className='text-sm font-normal ml-8 text-gray-500'>
+                      {data.company}
+                    </span>
+                  </p>
+                </div>
+                <div id='add__to__cart' className='my-5 text-2xl font-bold'>
+                  <div className='flex'>
+                    <button onClick={() => decrease()}>-</button>
+                    <p className='mx-5'>{amount}</p>
+                    <button onClick={() => setAmount(amount + 1)}>+</button>
+                  </div>
+                  <Button name='ADD TO CART' />
+                </div>
               </div>
             </div>
           </div>
