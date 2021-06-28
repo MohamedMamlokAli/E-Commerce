@@ -5,6 +5,7 @@ import Button from '../side/Button';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import { priceChanger } from '../side/functions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SingleProduct = ({ match }) => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const [data, setData] = useState({ images: [{ url: '' }] });
   const [loading, isLoading] = useState(true);
   const [price, setPrice] = useState(0);
@@ -33,8 +36,7 @@ const SingleProduct = ({ match }) => {
       .finally(() => {
         isLoading(false);
       });
-  }, [productID]);
-  console.log(data);
+  }, [single_product_url]);
   const classes = useStyles();
   const decrease = () => {
     if (amount > 1) {
@@ -129,7 +131,30 @@ const SingleProduct = ({ match }) => {
                     <p className='mx-5'>{amount}</p>
                     <button onClick={() => setAmount(amount + 1)}>+</button>
                   </div>
-                  <Button name='ADD TO CART' />
+
+                  <button
+                    className=' w-28 bg-price  py-2 text-sm text-gray-300 tracking-wide rounded-lg hover:bg-gray-300 hover:text-yellow-700 ease-in transition'
+                    onClick={() =>
+                      dispatch({
+                        type: 'ADD_TO_CART',
+                        payload: {
+                          totalItems: (cart.numberOfItemsInCart += 1),
+                          product: {
+                            productId: data.id,
+                            productName: data.name,
+                            productImage: data.images[0].url,
+                            howManyBought: amount,
+                            productPrice: price,
+                            totalPriceForItem: priceChanger(
+                              data.price * amount
+                            ),
+                          },
+                        },
+                      })
+                    }
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             </div>

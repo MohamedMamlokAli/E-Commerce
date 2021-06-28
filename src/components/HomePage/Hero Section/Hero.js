@@ -12,7 +12,7 @@ const Hero = () => {
       >
         <div
           id='hero__left__side'
-          className='max-w-2xl flex flex-col justify-center flex-1 '
+          className='max-w-2xl flex flex-col justify-center flex-1 mb-7'
         >
           <h1 className='text-5xl lg:text-6xl font-bold tracking-wide text-gray-700'>
             Design your<br></br>

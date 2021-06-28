@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Product from '../side/Product';
 import Left from './LeftSide/Left';
@@ -34,19 +34,20 @@ const Products = () => {
   const products = useSelector((state) => state.products);
 
   //sort by name
-  let newProducts = products.sort((a, b) => b.name.localeCompare(a.name));
+  // let newProducts = products.sort((a, b) => b.name.localeCompare(a.name));
   //sort by price
   let productsPrices = products
     .sort((a, b) => b.price - a.price)
     .filter((product) => product.name.includes(search))
     .filter((product) =>
-      company == 'all' ? product : product.company == company
+      company === 'all' ? product : product.company === company
     )
-    .filter((product) => (priceData == 0 ? product : product.price < priceData))
     .filter((product) =>
-      category == 'all' ? product : product.category == category
+      priceData === 0 ? product : product.price < priceData
+    )
+    .filter((product) =>
+      category === 'all' ? product : product.category === category
     );
-  console.log(productsPrices);
   return (
     <div>
       <div className='bg-store flex items-center justify-center mb-8 py-16'>
@@ -72,7 +73,7 @@ const Products = () => {
           {products ? (
             productsPrices.map((product) => {
               return (
-                <Link to={`/products/${product.id}`}>
+                <Link key={product.id} to={`/products/${product.id}`}>
                   <Product
                     name={product.name}
                     price={product.price}

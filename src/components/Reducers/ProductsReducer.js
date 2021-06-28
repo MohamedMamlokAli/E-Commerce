@@ -2,7 +2,8 @@ const ProductsReducer = (state = [], action) => {
   switch (action.type) {
     case 'FETCHED':
       return (state = [...action.payload]);
+    default:
+      return state;
   }
-  return state;
 };
 export default ProductsReducer;

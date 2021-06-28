@@ -7,19 +7,19 @@ import Products from './components/Products/Products';
 
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import SingleProduct from './components/SingleProduct/SingleProduct';
+import CartPage from './components/Cart/CartPage';
 
 const url = 'https://course-api.com/react-store-products';
 function App() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
   useEffect(() => {
     axios
       .get(url)
       .then((results) => dispatch({ type: 'FETCHED', payload: results.data }));
-  }, []);
+  }, [dispatch]);
   return (
     <div className='app'>
       <Router>
@@ -28,6 +28,8 @@ function App() {
         <Route path='/' exact component={Home} />
         <Route path='/about' component={About} />
         <Route path='/products' exact component={Products} />
+        <Route path='/cart' component={CartPage} />
+
         <Route path='/products/:id' component={SingleProduct} />
         <Footer />
       </Router>

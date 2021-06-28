@@ -25,7 +25,7 @@ const Featured = () => {
       <div
         id='products'
         //flex  lg:flex-row lg:justify-center justify-between flex-wrap  gap-10 items-center w-5/6
-        className='grid grid-cols-1 gap-y-4 lg:grid-cols-3 lg:gap-x-4 w-full px-32'
+        className='grid grid-cols-1 gap-y-4 lg:grid-cols-3 lg:gap-x-4 w-full lg:px-32'
       >
         {current ? (
           current.map((product) => {

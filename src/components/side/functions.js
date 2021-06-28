@@ -17,3 +17,4 @@ export const priceChanger = (number) => {
   });
   return formatter.format(formattedPrice);
 };
+// 3099;

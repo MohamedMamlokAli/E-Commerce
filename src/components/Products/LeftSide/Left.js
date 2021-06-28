@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '../../side/Button';
 import { priceChanger } from '../../side/functions';
 
 const Left = ({
@@ -10,7 +9,6 @@ const Left = ({
   reset,
 }) => {
   const [price, setPrice] = useState(310000);
-  console.log(reset);
   return (
     <div id='left__side' className=' ml-3'>
       <input
@@ -93,12 +91,13 @@ const Left = ({
         }}
       />
       <p className='my-3'>{priceChanger(price)}</p>
-      <Button
-        name='Clear Filters'
-        width='w-1/2'
-        color='bg-red-700'
-        statement={reset}
-      />
+
+      <button
+        className=' w-28 bg-red-700  py-2 text-sm text-gray-300 tracking-wide rounded-lg hover:bg-gray-300 hover:text-yellow-700 ease-in transition'
+        onClick={() => reset()}
+      >
+        Clear Filters
+      </button>
     </div>
   );
 };
