@@ -15,7 +15,9 @@ const Navbar = () => {
         id='container'
         className='w-full flex items-center justify-between px-3 py-3'
       >
-        <img id='logo__image' className='w-44' src={logo} alt='ComfySloth' />
+        <Link to='/'>
+          <img id='logo__image' className='w-44' src={logo} alt='ComfySloth' />
+        </Link>
         <img
           onClick={() => isOpen(!open)}
           id='open__close__menu'
@@ -35,7 +37,9 @@ const Navbar = () => {
               <li id='nav__link'>
                 <Link to='/'>Home</Link>
               </li>
-              <li id='nav__link'>About</li>
+              <li id='nav__link'>
+                <Link to='/about'>About</Link>
+              </li>
               <li id='nav__link'>
                 <Link to='/products'>Products</Link>
               </li>
@@ -80,27 +84,38 @@ const Navbar = () => {
             id='nav__links__container'
             className='space-y-4 text-gray-500 flex flex-col items-center justify-center'
           >
-            <li id='nav__link'>Home</li>
-            <li id='nav__link'>About</li>
-            <li id='nav__link'>Products</li>
+            <li id='nav__link'>
+              {' '}
+              <Link to='/'>Home</Link>
+            </li>
+            <li id='nav__link'>
+              <Link to='/about'>About</Link>
+            </li>
+            <li id='nav__link'>
+              {' '}
+              <Link to='/products'>Products</Link>
+            </li>
           </ul>
           <div
             id='cart__login'
             className='flex items-center justify-between w-52 font-bold mt-4'
           >
-            <div id='cart__login__flex' className='flex gap-1'>
-              <p>Cart</p>
-              {/* cart logo */}
-              <div>
-                <ShoppingCartIcon />
-                <sup
-                  style={{ borderRadius: '50%' }}
-                  className='-ml-3 bg-yellow-400 text-base px-1 py-0 '
-                >
-                  {/* cart state goes here */}0
-                </sup>
+            <Link to='/cart'>
+              <div id='cart__login__flex' className='flex gap-1'>
+                <p>Cart</p>
+                {/* cart logo */}
+                <div>
+                  <ShoppingCartIcon />
+                  <sup
+                    style={{ borderRadius: '50%' }}
+                    className='-ml-3 bg-yellow-400 text-base px-1 py-0 '
+                  >
+                    {/* cart state goes here */}
+                    {cart.numberOfItemsInCart}
+                  </sup>
+                </div>
               </div>
-            </div>
+            </Link>
             <div id='cart__login__flex' className='flex gap-1'>
               <p>Login</p>
               {/* login logo */}

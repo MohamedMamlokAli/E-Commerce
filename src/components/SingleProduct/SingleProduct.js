@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '../side/Button';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
@@ -48,7 +49,9 @@ const SingleProduct = ({ match }) => {
   return (
     <div>
       {loading ? (
-        <h1>loading</h1>
+        <div className='w-screen h-1/2-screen flex justify-center items-center'>
+          <CircularProgress />
+        </div>
       ) : (
         <div>
           <div className='bg-store flex items-center justify-center mb-8 py-16'>
@@ -139,12 +142,14 @@ const SingleProduct = ({ match }) => {
                         type: 'ADD_TO_CART',
                         payload: {
                           totalItems: (cart.numberOfItemsInCart += 1),
+                          totalPrice: (cart.totalPrice += data.price),
                           product: {
                             productId: data.id,
                             productName: data.name,
                             productImage: data.images[0].url,
                             howManyBought: amount,
                             productPrice: price,
+                            unConvertedPrice: data.price,
                             totalPriceForItem: priceChanger(
                               data.price * amount
                             ),

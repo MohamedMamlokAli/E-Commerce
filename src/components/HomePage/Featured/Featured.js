@@ -30,7 +30,7 @@ const Featured = () => {
         {current ? (
           current.map((product) => {
             return (
-              <Link to={`/products/${product.id}}`} exact>
+              <Link to={`/products/${product.id}}`}>
                 <Product
                   name={product.name}
                   price={product.price}
@@ -43,7 +43,9 @@ const Featured = () => {
           <h1>Loading</h1>
         )}
       </div>
-      <Button name='ALL PRODUCTS' />
+      <Link to='/products'>
+        <Button name='ALL PRODUCTS' />
+      </Link>
     </section>
   );
 };

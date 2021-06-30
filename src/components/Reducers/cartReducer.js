@@ -21,6 +21,13 @@ const cartReducer = (
           (product) => product.productId !== action.payload.productId
         ),
       };
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        productsInCart: [],
+        totalPrice: 0,
+        numberOfItemsInCart: 0,
+      };
     default:
       return state;
   }
