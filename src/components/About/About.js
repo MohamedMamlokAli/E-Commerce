@@ -2,6 +2,8 @@ import React from 'react';
 import img1 from '../images/hero-lg.jpg';
 import { Link } from 'react-router-dom';
 const About = () => {
+  document.title = 'About us';
+
   return (
     <section id='about' className=' '>
       <div className='bg-store flex items-center justify-center mb-8 py-16 '>
@@ -17,7 +19,7 @@ const About = () => {
       </div>
       <div className='h-full'>
         <div className='flex flex-col  lg:flex-row lg:justify-between items-start w-5/6 mx-auto my-20 lg:my-20 space-y-6 lg:space-x-8'>
-          <div id='about__left' className='lg:h-4/6 h-96 lg:flex-1'>
+          <div id='about__left' className='lg:h-500px h-96 lg:flex-1 '>
             <img className='w-full max-h-full object-cover' src={img1} alt='' />
           </div>
           <div id='about__right' className='flex-1'>

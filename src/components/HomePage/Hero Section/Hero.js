@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../side/Button';
 import img1 from '../../images/hero-lg.jpg';
 import img2 from '../../images/hero-sm.jpg';
-
+import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section id='hero' className='pl-5 mt-20 h-55vh lg:h-screen'>
@@ -24,7 +24,9 @@ const Hero = () => {
             repellat quaerat commodi quidem incidunt neque accusamus, autem
             possimus accusantium. Itaque, quia!
           </p>
-          <Button name='SHOP NOW' width='32' />
+          <Link to='/products'>
+            <Button name='SHOP NOW' width='32' />
+          </Link>
         </div>
         <div
           id='hero__right__side'

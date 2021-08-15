@@ -5,6 +5,8 @@ import Moto from './Moto/Moto';
 import NewsLetter from './Newsletter/NewsLetter';
 
 const Home = () => {
+  document.title = 'Comfy Sloth';
+
   return (
     <main>
       <Hero />

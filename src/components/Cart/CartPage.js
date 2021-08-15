@@ -6,9 +6,11 @@ import { priceChanger } from '../side/functions';
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  document.title = 'Cart';
+
   return (
     <div>
-      <div className='bg-store flex items-center justify-center mb-8 py-16 '>
+      <div className='  bg-store flex items-center justify-center mb-8 py-16 '>
         <h3 className='w-4/6 text-3xl font-extrabold'>
           <Link
             to='/'
@@ -19,6 +21,12 @@ const CartPage = () => {
           / Cart
         </h3>
       </div>
+      <h1 className='text-center'>
+        Hello
+        <span className='text-xl font-bold text-price'>
+          {cart.user ? ` ${cart.user}` : ' guest'}
+        </span>
+      </h1>
       <div id='cart__items'>
         <div className='lg:w-4/6 grid grid-cols-3 text-gray-600 lg:grid-cols-5 mx-auto place-items-center my-4 border-b-2 border-store py-4'>
           <p>Item</p>
@@ -43,23 +51,25 @@ const CartPage = () => {
                   <p className='font-bold capitalize'>{product.productName}</p>
                 </div>
                 <p className='hidden lg:block text-price'>
-                  {product.productPrice}
+                  {priceChanger(product.productPrice)}
                 </p>
                 <p className='hidden lg:block'>{product.howManyBought}</p>
-                <p>{product.totalPriceForItem}</p>
+                <p>{priceChanger(product.totalPriceForItem)}</p>
                 <button
                   className='bg-red-600 rounded-xl p-1 text-white'
-                  onClick={() =>
-                    dispatch({
-                      type: 'REMOVE_ITEM',
-                      payload: {
-                        productId: product.productId,
-                        totalItems: (cart.numberOfItemsInCart -= 1),
-                        totalPrice: (cart.totalPrice -=
-                          product.unConvertedPrice),
-                      },
-                    })
-                  }
+                  onClick={() => {
+                    if (cart.productsInCart.length > 0) {
+                      dispatch({
+                        type: 'REMOVE_ITEM',
+                        payload: {
+                          productId: product.productId,
+                          totalItems: (cart.numberOfItemsInCart -= 1),
+                          totalPrice: product.totalPriceForItem,
+                          howManyBought: product.howManyBought,
+                        },
+                      });
+                    }
+                  }}
                 >
                   <DeleteIcon />
                 </button>

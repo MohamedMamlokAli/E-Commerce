@@ -6,11 +6,17 @@ import logo from '../images/logo.221f6b13.svg';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import { useSelector } from 'react-redux';
+import { auth } from '../../firebase';
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   const [open, isOpen] = useState(false);
+  const handleSignOut = () => {
+    if (cart.user) {
+      auth.signOut();
+    }
+  };
   return (
-    <header id='page__header' className='max-w-7xl mx-auto'>
+    <header id='page__header' className='max-w-7xl mx-auto mb-4'>
       <div
         id='container'
         className='w-full flex items-center justify-between px-3 py-3'
@@ -65,11 +71,17 @@ const Navbar = () => {
                 </div>
               </div>
             </Link>
-            <div id='cart__login__flex' className='flex gap-1'>
-              <p>Login</p>
-              {/* login logo */}
-              <PersonIcon />
-            </div>
+            <Link to={!cart.user && '/login'}>
+              <div
+                onClick={() => handleSignOut()}
+                id='cart__login__flex'
+                className='flex gap-1'
+              >
+                <p>{cart.user ? 'Sign Out' : 'Sign In'}</p>
+                {/* login logo */}
+                <PersonIcon />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -116,11 +128,17 @@ const Navbar = () => {
                 </div>
               </div>
             </Link>
-            <div id='cart__login__flex' className='flex gap-1'>
-              <p>Login</p>
-              {/* login logo */}
-              <PersonIcon />
-            </div>
+            <Link to={!cart.user && '/login'}>
+              <div
+                onClick={() => handleSignOut()}
+                id='cart__login__flex'
+                className='flex gap-1'
+              >
+                <p>{cart.user ? 'Sign Out' : 'Sign In'}</p>
+                {/* login logo */}
+                <PersonIcon />
+              </div>
+            </Link>
           </div>
         </nav>
       </div>

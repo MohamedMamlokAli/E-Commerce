@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Button from '../../side/Button';
 import Product from '../../side/Product';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
 
 const Featured = () => {
-  const products = useSelector((state) => state.products);
-  const [current, setCurrent] = useState([...products]);
-  current.length = 3;
-  useEffect(() => {
-    if (products) {
-      setCurrent([...products]);
-    }
-  }, [products]);
+  const classes = useStyles();
 
+  const products = useSelector((state) => state.products);
   return (
     <section
       id='featured'
@@ -27,10 +32,10 @@ const Featured = () => {
         //flex  lg:flex-row lg:justify-center justify-between flex-wrap  gap-10 items-center w-5/6
         className='grid grid-cols-1 gap-y-4 lg:grid-cols-3 lg:gap-x-4 w-full lg:px-32'
       >
-        {current ? (
-          current.map((product) => {
+        {products ? (
+          products.slice(0, 3).map((product) => {
             return (
-              <Link to={`/products/${product.id}}`}>
+              <Link key={product.id} to={`/products/${product.id}`}>
                 <Product
                   name={product.name}
                   price={product.price}
@@ -40,7 +45,9 @@ const Featured = () => {
             );
           })
         ) : (
-          <h1>Loading</h1>
+          <div className={classes.root}>
+            <CircularProgress />
+          </div>
         )}
       </div>
       <Link to='/products'>

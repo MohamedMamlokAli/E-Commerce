@@ -32,7 +32,7 @@ const SingleProduct = ({ match }) => {
       .get(single_product_url)
       .then((res) => {
         setData(res.data);
-        setPrice(priceChanger(res.data.price));
+        setPrice(res.data.price);
       })
       .finally(() => {
         isLoading(false);
@@ -103,7 +103,7 @@ const SingleProduct = ({ match }) => {
                   <p>({data.reviews} customers reviews)</p>
                 </div>
                 <p className='text-price font-bold tracking-widest text-sm'>
-                  {price}
+                  {priceChanger(price)}
                 </p>
                 <p className='text-gray-500 text-sm leading-7'>
                   {data.description}
@@ -141,8 +141,7 @@ const SingleProduct = ({ match }) => {
                       dispatch({
                         type: 'ADD_TO_CART',
                         payload: {
-                          totalItems: (cart.numberOfItemsInCart += 1),
-                          totalPrice: (cart.totalPrice += data.price),
+                          totalPrice: cart.totalPrice,
                           product: {
                             productId: data.id,
                             productName: data.name,
@@ -150,9 +149,7 @@ const SingleProduct = ({ match }) => {
                             howManyBought: amount,
                             productPrice: price,
                             unConvertedPrice: data.price,
-                            totalPriceForItem: priceChanger(
-                              data.price * amount
-                            ),
+                            totalPriceForItem: data.price,
                           },
                         },
                       })

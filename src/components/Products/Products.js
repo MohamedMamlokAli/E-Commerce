@@ -48,6 +48,7 @@ const Products = () => {
     .filter((product) =>
       category === 'all' ? product : product.category === category
     );
+  document.title = 'Products';
   return (
     <div>
       <div className='bg-store flex items-center justify-center mb-8 py-16'>
